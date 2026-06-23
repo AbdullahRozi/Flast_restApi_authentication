@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSphere - Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+</head>
+<body>
+
+    <nav class="dashboard-nav">
+        <div class="nav-brand">DevSphere</div>
+        <button class="logout-btn" onclick="localStorage.removeItem('myToken'); window.location.href='index.html';">Secure Logout</button>
+    </nav>
+
+    <main class="dashboard-container">
+        <div class="data-card">
+            <div class="card-status-indicator"></div>
+            <div class="card-icon">🔒</div>
+            <h1 id="heading1">Loading...</h1> 
+            <p class="card-subtext">Secure streaming database instance</p>
+        </div>
+    </main>
+
+<script> 
+    const header = document.getElementById("heading1"); 
+
+    async function loadFunction() { 
+        const token = localStorage.getItem("myToken"); 
+
+        // Safety Check: If there's no token, don't even bother fetching
+        if (!token) {
+            header.textContent = "Error: Please log in first.";
+            header.classList.add("error-active"); // Changes text to alert styling
+            return;
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/dashboard", {
+                headers: { Authorization: token }
+            });
+
+            // Check if the server responded with an error (e.g., 401 or 500)
+            if (!response.ok) {
+                throw new Error("Failed to fetch dashboard data");
+            }
+            
+            const data = await response.json();
+            
+            // Display the data safely
+            header.textContent = data.secret_data || "No secret data found."; 
+
+        } catch (error) {
+            // If the backend server is offline or CORS blocks it, handle it here
+            console.log("Error fetching data:", error);
+            header.textContent = "Failed to load dashboard. Server might be offline.";
+            header.classList.add("error-active");
+        }
+    }
+
+    // Run the function when the page loads
+    loadFunction();
+</script>
+</body>
+</html>

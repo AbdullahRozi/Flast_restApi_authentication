@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSphere - Register & Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="brand-header">
+        <div class="brand-logo">DevSphere</div>
+        <p>Access your centralized development workspace</p>
+    </div>
+
+    <div class="forms-grid-wrapper">
+        
+        <div class="form-container">
+            <h1>REGISTER HERE</h1>
+            <form id="RegisterForm">
+                <input type="text" id="name" placeholder="Enter Your Name Please" required>
+                <input type="email" id="email" placeholder="Enter Your email" required>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <input type="password" id="C_password" placeholder="Confirm password" required>
+                
+                <p id="errorMessage" class="error-text" style="color: #ef4444; display: none;">Passwords do not match!</p>
+                
+                <button type="submit">Submit Account</button>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h1>LOGIN HERE</h1>
+            <form id="LoginForm">
+                <input type="email" id="L_email" placeholder="Enter Your email" required>
+                <input type="password" id="L_password" placeholder="Enter password" required>
+                
+                <p id="errorMessage" class="error-text" style="color: #ef4444; display: none;">Either email or password Incorrect</p>
+                
+                <button type="submit">Secure Login</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
