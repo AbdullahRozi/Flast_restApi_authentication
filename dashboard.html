@@ -31,8 +31,10 @@
         // Safety Check: If there's no token, don't even bother fetching
         if (!token) {
             header.textContent = "Error: Please log in first.";
+
             header.classList.add("error-active"); // Changes text to alert styling
-            return;
+            window.location.href = "C:/Users/pcs/Desktop/python%20projects%20practice/index.html"   
+                     return;
         }
 
         try {
@@ -43,6 +45,7 @@
             // Check if the server responded with an error (e.g., 401 or 500)
             if (!response.ok) {
                 throw new Error("Failed to fetch dashboard data");
+                window.location.href = "C:/Users/pcs/Desktop/python%20projects%20practice/index.html"
             }
             
             const data = await response.json();
@@ -55,6 +58,7 @@
             console.log("Error fetching data:", error);
             header.textContent = "Failed to load dashboard. Server might be offline.";
             header.classList.add("error-active");
+            window.location.href = "C:/Users/pcs/Desktop/python%20projects%20practice/index.html"
         }
     }
 
