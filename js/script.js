@@ -44,6 +44,8 @@
                             })
                         });
 
+                        if (response.ok){
+
                                 // Useful for debugging your server response
                                 const data = await response.json();
 
@@ -52,7 +54,13 @@
                                 FormData.value = " "
 
                                 window.location.href = "C:/Users/pcs/Desktop/python%20projects%20practice/dashboard.html"
-                                
+                        }else{
+                            const data = await response.json();
+                            errorMessage.style.display = 'block'; 
+                            errorMessage.textContent = data.message ; 
+                            return;
+
+                        }   
 
                                 
                             } catch (error) {
@@ -95,9 +103,10 @@
                                 window.location.href = "C:/Users/pcs/Desktop/python%20projects%20practice/dashboard.html"
                                 
                         }else{
+                            const L_errorMessage = document.getElementById('L_errorMessage');
                             const data = await response.json();
-                            errorMessage.textContent = data.message ;
-                            errorMessage.style.color = 'red' ;
+                            L_errorMessage.textContent = data.message ;
+                            L_errorMessage.style.color = 'red' ;
                         }
                                 
                             } catch (error) {
